@@ -10,7 +10,6 @@ class DocusignProcessor {
         const dsClientId = process.env.CLIENT_ID;
         const impersonatedUserGuid = process.env.USER_ID;
         console.log(`dsClientId: ${dsClientId}, impersonatedUserGuid: ${impersonatedUserGuid}`);
-        console.log(`Env variables: ${process.argv.toString()}`);
         // const filePath = path.join(__dirname, './private_key.pem'); 
         // const rsaKey = fs.readFileSync(filePath, 'utf8');
         const rsaKey = process.env.RSA_KEY;
@@ -37,7 +36,7 @@ class DocusignProcessor {
             );
             dsApi.setBasePath(userInfo.baseUri + "/restapi");
 
-            console.log(`Template data -> ${JSON.stringify(this.template)}`);
+            // console.log(`Template data -> ${JSON.stringify(this.template)}`);
 
             // Define signer
             let signer = docusign.Signer.constructFromObject({
@@ -75,9 +74,10 @@ class DocusignProcessor {
             // create recipient view url
             const envelopeId = envelopeSummary.envelopeId;
             const viewUrl = await envelopesApi.createRecipientView(userInfo.accountId, envelopeId, { recipientViewRequest });
+            console.log(`ESign generation Success`);
             return viewUrl;
         } catch (error) {
-            console.log(error.response.data)
+            console.log(`Error -> ${error.response.data}`)
             throw new Error(error);
         }
     }
