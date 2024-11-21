@@ -11,8 +11,9 @@ class DocusignProcessor {
         const impersonatedUserGuid = process.env.USER_ID;
         console.log(`dsClientId: ${dsClientId}, impersonatedUserGuid: ${impersonatedUserGuid}`);
         console.log(`Env variables: ${process.argv.toString()}`);
-        const filePath = path.join(__dirname, './private_key.pem'); 
-        const rsaKey = fs.readFileSync(filePath, 'utf8');
+        // const filePath = path.join(__dirname, './private_key.pem'); 
+        // const rsaKey = fs.readFileSync(filePath, 'utf8');
+        const rsaKey = process.env.RSA_KEY;
         const basePath = "account-d.docusign.com";
 
         const dsApi = new docusign.ApiClient();
