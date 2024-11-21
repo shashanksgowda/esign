@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "start": "node index.js"
   },
   "author": "shashank",
   "license": "ISC",
@@ -12,5 +14,8 @@
     "docusign-esign": "^8.0.1",
     "express": "^4.21.1",
     "lodash": "^4.17.21"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
