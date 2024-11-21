@@ -7,8 +7,8 @@ class DocusignProcessor {
         this.template = template;
     }
     async getEsignUrl() {
-        const dsClientId = process.argv[2];
-        const impersonatedUserGuid = process.argv[3];
+        const dsClientId = process.env.CLIENT_ID;
+        const impersonatedUserGuid = process.env.USER_ID;
         console.log(`dsClientId: ${dsClientId}, impersonatedUserGuid: ${impersonatedUserGuid}`);
         console.log(`Env variables: ${process.argv.toString()}`);
         const filePath = path.join(__dirname, './private_key.pem'); 
